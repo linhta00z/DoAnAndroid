@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText mEmailEt, mPasswordEt;
     Button mRegisterBtn;
+    TextView mHaveAccountTv;
 
     ProgressDialog progressDialog;
 
@@ -43,6 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
         mEmailEt = findViewById(R.id.emailEt);
         mPasswordEt = findViewById(R.id.passwordEt);
         mRegisterBtn = findViewById(R.id.RegisterBtn);
+        mHaveAccountTv = findViewById(R.id.have_accountTv);
+
         mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(this);
@@ -66,6 +70,13 @@ public class RegisterActivity extends AppCompatActivity {
                 else {
                     registerUser(email, password);
                 }
+            }
+        });
+        mHaveAccountTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                finish();
             }
         });
     }

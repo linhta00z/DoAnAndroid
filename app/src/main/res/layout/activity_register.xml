@@ -19,8 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="false"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="150dp"
         android:id="@+id/emailTIL">
         <EditText
             android:layout_width="match_parent"
@@ -34,7 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:id="@+id/passwordlTIL"
         android:layout_below="@id/emailTIL"
         app:passwordToggleEnabled="true">
@@ -56,6 +54,7 @@
         app:backgroundTint="@color/blue"
         android:drawableLeft="@drawable/ic_register_white"
         android:drawablePadding="5dp"
+        android:layout_marginTop="30dp"
         style="@style/Base.Widget.AppCompat.Button.Colored"/>
     <TextView
         android:id="@+id/have_accountTv"

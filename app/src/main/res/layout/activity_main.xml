@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/neon"
+    android:background="@drawable/ocean"
     tools:context=".MainActivity">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_height="250dp"
         android:src="@drawable/catchat"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="40dp"/>
 
     <Button
         android:id="@+id/register_btn"
@@ -24,19 +24,19 @@
         android:drawableLeft="@drawable/ic_register_white"
         android:minWidth="230dp"
         android:text="Register"
-        app:backgroundTint="@color/blue" />
+        app:backgroundTint="@color/light_blue" />
     <Button
         android:id="@+id/login_btn"
         android:text="Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/blue"
+        app:backgroundTint="@color/light_blue"
         style="@style/Base.Widget.AppCompat.Button.Colored"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:drawableLeft="@drawable/ic_login_white"
         android:minWidth="230dp"
-        android:layout_marginBottom="70dp"/>
+        android:layout_marginBottom="150dp"/>
 
 
 </RelativeLayout>

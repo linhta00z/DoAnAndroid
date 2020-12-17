@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Register"
-        android:textColor="@color/blue"
+        android:textColor="@color/light_blue"
         android:textSize="25sp"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -51,10 +51,10 @@
         android:text="Register"
         android:layout_below="@id/passwordlTIL"
         android:layout_centerHorizontal="true"
-        app:backgroundTint="@color/blue"
+        app:backgroundTint="@color/light_blue"
         android:drawableLeft="@drawable/ic_register_white"
         android:drawablePadding="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         style="@style/Base.Widget.AppCompat.Button.Colored"/>
     <TextView
         android:id="@+id/have_accountTv"

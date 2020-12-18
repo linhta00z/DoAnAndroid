@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:id="@+id/passwordlTIL"
+        android:id="@+id/passwordTIL"
         android:layout_below="@id/emailTIL"
         app:passwordToggleEnabled="true">
         <EditText
@@ -43,13 +43,27 @@
             android:inputType="textPassword"
             android:hint="Password"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/repeatPasswordTIL"
+        android:layout_below="@id/passwordTIL"
+        app:passwordToggleEnabled="true">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeatPasswordEt"
+            android:inputType="textPassword"
+            android:hint="Repeat Password"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/RegisterBtn"
         android:text="Register"
-        android:layout_below="@id/passwordlTIL"
+        android:layout_below="@id/repeatPasswordTIL"
         android:layout_centerHorizontal="true"
         app:backgroundTint="@color/light_blue"
         android:drawableLeft="@drawable/ic_register_white"

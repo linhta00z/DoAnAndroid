@@ -12,7 +12,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +21,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText mEmailEt, mPasswordEt;
+    EditText mEmailEt, mPasswordEt, mrepeatPasswordEt;
     Button mRegisterBtn;
     TextView mHaveAccountTv;
 
@@ -48,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         mPasswordEt = findViewById(R.id.passwordEt);
         mRegisterBtn = findViewById(R.id.RegisterBtn);
         mHaveAccountTv = findViewById(R.id.have_accountTv);
+        mrepeatPasswordEt = findViewById(R.id.repeatPasswordEt);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -60,6 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = mEmailEt.getText().toString().trim();
                 String password = mPasswordEt.getText().toString().trim();
+                String repeatpassword = mrepeatPasswordEt.getText().toString().trim();
 
                 if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     mEmailEt.setError("Invalid Email");
@@ -68,6 +73,10 @@ public class RegisterActivity extends AppCompatActivity {
                 else if (password.length()<6){
                     mPasswordEt.setError("Password length at least 6 characters");
                     mPasswordEt.setFocusable(true);
+                }
+                else if (repeatpassword.length()!=password.length()){
+                    mrepeatPasswordEt.setError("Repeat password and password must be the same");
+                    mrepeatPasswordEt.setFocusable(true);
                 }
                 else {
                     registerUser(email, password);
@@ -93,9 +102,20 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+                            HashMap<Object, String> hashMap = new HashMap<>();
+                            hashMap.put("email",email);
+                            hashMap.put("uid",uid);
+                            hashMap.put("name", "");
+                            hashMap.put("phone", "");
+                            hashMap.put("image", "");
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = database.getReference("Users");
+                            reference.child(uid).setValue(hashMap);
 
                             Toast.makeText(RegisterActivity.this,"Register...\n"+user.getEmail(),Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterActivity.this, com.example.catchat.ProfileActivity.class));
+                            startActivity(new Intent(RegisterActivity.this, DashboardActivity.class));
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.

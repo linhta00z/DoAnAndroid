@@ -60,6 +60,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener(){
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(View v) {
                 String email = mEmailEt.getText().toString().trim();
@@ -84,6 +90,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         mHaveAccountTv.setOnClickListener(new View.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
@@ -96,6 +108,12 @@ public class RegisterActivity extends AppCompatActivity {
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @NonNull
+                    @Override
+                    public String toString() {
+                        return super.toString();
+                    }
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -110,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("name", "");
                             hashMap.put("phone", "");
                             hashMap.put("image", "");
+                            hashMap.put("cover", "");
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference reference = database.getReference("Users");
                             reference.child(uid).setValue(hashMap);
@@ -124,6 +143,12 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();

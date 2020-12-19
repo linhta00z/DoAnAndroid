@@ -46,14 +46,11 @@ public class LoginActivity extends AppCompatActivity {
     EditText mEmailEt, mPasswordEt;
     TextView notHaveAccountTv,mRecoverPassTv;
     Button mLoginBtn;
-    //SignInButton mGoogleLoginBtn;
     SignInButton mGoogleLoginBtn;
 
-
+    ProgressDialog pd;
 
     private FirebaseAuth mAuth;
-
-    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +81,12 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(View v) {
                 String email = mEmailEt.getText().toString();
@@ -101,17 +104,38 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        notHaveAccountTv.setOnClickListener((v)->{
-            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            finish();
+        notHaveAccountTv.setOnClickListener(new View.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                finish();
+            }
         });
         mRecoverPassTv.setOnClickListener((new View.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(View v) {
                 showRecoverPasswordDialog();
             }
         }));
         mGoogleLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(View v) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -119,6 +143,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         mGoogleLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(View v) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -146,6 +176,12 @@ public class LoginActivity extends AppCompatActivity {
         builder.setView(linearLayout);
 
         builder.setPositiveButton("Recover", new DialogInterface.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String email=emailEt.getText().toString().trim();
@@ -153,6 +189,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -167,6 +209,12 @@ public class LoginActivity extends AppCompatActivity {
         pd.show();
         mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @NonNull
+                    @Override
+                    public String toString() {
+                        return super.toString();
+                    }
+
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         pd.dismiss();
@@ -179,6 +227,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onFailure(@NonNull Exception e) {
                 pd.dismiss();
@@ -193,6 +247,12 @@ public class LoginActivity extends AppCompatActivity {
         pd.show();
         mAuth.signInWithEmailAndPassword(email, passw)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @NonNull
+                    @Override
+                    public String toString() {
+                        return super.toString();
+                    }
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -209,6 +269,12 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onFailure(@NonNull Exception e) {
                 pd.dismiss();
@@ -245,6 +311,12 @@ public class LoginActivity extends AppCompatActivity {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @NonNull
+                    @Override
+                    public String toString() {
+                        return super.toString();
+                    }
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -260,6 +332,7 @@ public class LoginActivity extends AppCompatActivity {
                                 hashMap.put("name", "");
                                 hashMap.put("phone", "");
                                 hashMap.put("image", "");
+                                hashMap.put("cover", "");
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference reference = database.getReference("Users");
                                 reference.child(uid).setValue(hashMap);
@@ -275,6 +348,12 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(LoginActivity.this, ""+e.getMessage(),Toast.LENGTH_SHORT).show();

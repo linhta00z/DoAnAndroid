@@ -1,5 +1,6 @@
 package com.example.catchat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,12 +27,24 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide();
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener(){
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @NonNull
+            @Override
+            public String toString() {
+                return super.toString();
+            }
+
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));

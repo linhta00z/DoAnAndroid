@@ -1,6 +1,7 @@
-package com.example.catchat;
+package com.example.catchat.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.catchat.ChatActivity;
+import com.example.catchat.models.ModelUsers;
+import com.example.catchat.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -37,6 +41,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder>{
         String userImage = usersList.get(i).getImage();
         String userName = usersList.get(i).getName();
         String userEmail = usersList.get(i).getEmail();
+        String hisUID = usersList.get(i).getUid();
 
         myHolder.mNameTv.setText(userName);
         myHolder.mEmailTv.setText(userEmail);
@@ -55,7 +60,9 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder>{
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, ""+userEmail,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ChatActivity.class);
+                intent.putExtra("hisUid", hisUID);
+                context.startActivity(intent);
             }
         });
     }
